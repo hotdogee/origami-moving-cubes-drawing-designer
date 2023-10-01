@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 
-const config: Config = {
+let config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -30,40 +30,72 @@ const config: Config = {
   let y = Math.floor(i / 3)
   let yDirection = y === 0 ? -1 : y === 1 ? 0 : 1
   let xDirection = x === 0 ? -1 : x === 1 ? 0 : 1
-  config.theme.extend.keyframes[`cube_${i}_in`] = {}
-  ;[...Array(11).keys()].map((k) => {
-    config.theme.extend.keyframes[`cube_${i}_in`][`${k * 10}%`] = {
-      transform: `translateY(calc(100%*${
-        yDirection *
-        (Math.cos(((k * 9 - 45) / 180) * Math.PI) /
-          Math.cos((45 / 180) * Math.PI) -
-          1)
-      })) translateX(calc(100%*${
-        xDirection *
-        (Math.cos(((k * 9 - 45) / 180) * Math.PI) /
-          Math.cos((45 / 180) * Math.PI) -
-          1)
-      })) rotate(${isClockwise * (90 - k * 9)}deg) `,
-    }
-  })
-  config.theme.extend.keyframes[`cube_${i}_out`] = {}
-  ;[...Array(11).keys()].map((k) => {
-    config.theme.extend.keyframes[`cube_${i}_out`][`${k * 10}%`] = {
-      transform: `translateY(calc(100%*${
-        yDirection *
-        (Math.cos(((k * 9 - 45) / 180) * Math.PI) /
-          Math.cos((45 / 180) * Math.PI) -
-          1)
-      })) translateX(calc(100%*${
-        xDirection *
-        (Math.cos(((k * 9 - 45) / 180) * Math.PI) /
-          Math.cos((45 / 180) * Math.PI) -
-          1)
-      })) rotate(${isClockwise * k * 9}deg) `,
-    }
-  })
-  config.theme.extend.animation[`cube_${i}_in`] = `cube_${i}_in 1s linear 1`
-  config.theme.extend.animation[`cube_${i}_out`] = `cube_${i}_out 1s linear 1`
+  if (config?.theme?.extend?.keyframes) {
+    ;(
+      config.theme.extend.keyframes as Record<
+        string,
+        Record<string, Record<string, string>>
+      >
+    )[`cube_${i}_in`] = {}
+    ;[...Array(11).keys()].map((k) => {
+      if (config?.theme?.extend?.keyframes) {
+        ;(
+          config.theme.extend.keyframes as Record<
+            string,
+            Record<string, Record<string, string>>
+          >
+        )[`cube_${i}_in`][`${k * 10}%`] = {
+          transform: `translateY(calc(100%*${
+            yDirection *
+            (Math.cos(((k * 9 - 45) / 180) * Math.PI) /
+              Math.cos((45 / 180) * Math.PI) -
+              1)
+          })) translateX(calc(100%*${
+            xDirection *
+            (Math.cos(((k * 9 - 45) / 180) * Math.PI) /
+              Math.cos((45 / 180) * Math.PI) -
+              1)
+          })) rotate(${isClockwise * (90 - k * 9)}deg) `,
+        }
+      }
+    })
+    ;(
+      config.theme.extend.keyframes as Record<
+        string,
+        Record<string, Record<string, string>>
+      >
+    )[`cube_${i}_out`] = {}
+    ;[...Array(11).keys()].map((k) => {
+      if (config?.theme?.extend?.keyframes) {
+        ;(
+          config.theme.extend.keyframes as Record<
+            string,
+            Record<string, Record<string, string>>
+          >
+        )[`cube_${i}_out`][`${k * 10}%`] = {
+          transform: `translateY(calc(100%*${
+            yDirection *
+            (Math.cos(((k * 9 - 45) / 180) * Math.PI) /
+              Math.cos((45 / 180) * Math.PI) -
+              1)
+          })) translateX(calc(100%*${
+            xDirection *
+            (Math.cos(((k * 9 - 45) / 180) * Math.PI) /
+              Math.cos((45 / 180) * Math.PI) -
+              1)
+          })) rotate(${isClockwise * k * 9}deg) `,
+        }
+      }
+    })
+  }
+  if (config?.theme?.extend?.animation) {
+    ;(config.theme.extend.animation as Record<string, string>)[
+      `cube_${i}_in`
+    ] = `cube_${i}_in 1s linear 1`
+    ;(config.theme.extend.animation as Record<string, string>)[
+      `cube_${i}_out`
+    ] = `cube_${i}_out 1s linear 1`
+  }
 })
 
 export default config
