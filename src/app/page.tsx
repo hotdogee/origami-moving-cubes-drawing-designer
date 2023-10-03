@@ -11,6 +11,26 @@ export default function Home() {
   const [lineWidth, setLineWidth] = useState(5)
   const [lineColor, setLineColor] = useState('black')
   const [lineOpacity, setLineOpacity] = useState(0.1)
+  // Preview
+  const [isPreview, setIsPreview] = useState(true)
+  useEffect(() => {
+    if (!isPreview) {
+      transformedCanvasRef.current.map((canvas, i) => {
+        canvas.classList.remove(`animate-cube_${i}_out`)
+        // Trigger a reflow between removing and adding the class name
+        // reading the property requires a recalc
+        void canvas.offsetWidth
+        canvas.classList.add(`animate-cube_${i}_in`)
+      })
+    } else {
+      transformedCanvasRef.current.map((canvas, i) => {
+        canvas.classList.remove(`animate-cube_${i}_in`)
+        void canvas.offsetWidth
+        canvas.classList.add(`animate-cube_${i}_out`)
+      })
+    }
+  }, [isPreview])
+
   // Initialization when the component
   // mounts for the first time
   useEffect(() => {
@@ -57,6 +77,7 @@ export default function Home() {
       ctx.drawImage(drawCanvasRef.current!, x * 300, y * 300, 300, 300, 0, 0, 300, 300)
     })
   }
+
   return (
     <>
       <header className="container mx-auto my-4 flex items-center justify-center">
@@ -89,10 +110,25 @@ export default function Home() {
                     height={`300px`}
                     className={`w-full ${
                       i % 2 ? 'rotate-[-90deg]' : 'rotate-90'
-                    } group-hover:animate-cube_${i}_in animate-cube_${i}_out border-2 border-black object-contain group-hover:rotate-0`}
+                    }  animate-cube_${i}_out border-2 border-black object-contain ${
+                      isPreview ? '' : `animate-cube_${i}_in rotate-0`
+                    }`}
                   />
                 )
               })}
+            </div>
+            <div className="flex items-center justify-center mx-auto p-4">
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  value=""
+                  className="sr-only peer"
+                  checked={isPreview}
+                  onChange={(e) => setIsPreview(e.target.checked)}
+                />
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Preview</span>
+              </label>
             </div>
           </div>
         </div>
