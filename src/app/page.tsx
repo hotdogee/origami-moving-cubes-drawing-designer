@@ -1,6 +1,5 @@
 'use client'
 import DrawMenu from '@/components/DrawMenu'
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
@@ -33,10 +32,7 @@ export default function Home() {
       scaleX = drawCanvasRef.current?.width! / rect!.width,
       scaleY = drawCanvasRef.current?.height! / rect!.height
     ctxRef.current?.beginPath()
-    ctxRef.current?.moveTo(
-      e.nativeEvent.offsetX * scaleX,
-      e.nativeEvent.offsetY * scaleY,
-    )
+    ctxRef.current?.moveTo(e.nativeEvent.offsetX * scaleX, e.nativeEvent.offsetY * scaleY)
     setIsDrawing(true)
   }
 
@@ -53,25 +49,12 @@ export default function Home() {
     let rect = drawCanvasRef.current?.getBoundingClientRect(),
       scaleX = drawCanvasRef.current?.width! / rect!.width,
       scaleY = drawCanvasRef.current?.height! / rect!.height
-    ctxRef.current?.lineTo(
-      e.nativeEvent.offsetX * scaleX,
-      e.nativeEvent.offsetY * scaleY,
-    )
+    ctxRef.current?.lineTo(e.nativeEvent.offsetX * scaleX, e.nativeEvent.offsetY * scaleY)
     ctxRef.current?.stroke()
     transformedCtxRef.current?.map((ctx, i) => {
       let x = i % 3
       let y = Math.floor(i / 3)
-      ctx.drawImage(
-        drawCanvasRef.current!,
-        x * 300,
-        y * 300,
-        300,
-        300,
-        0,
-        0,
-        300,
-        300,
-      )
+      ctx.drawImage(drawCanvasRef.current!, x * 300, y * 300, 300, 300, 0, 0, 300, 300)
     })
   }
   return (
@@ -86,17 +69,14 @@ export default function Home() {
               id="draw-canvas"
               onMouseDown={startDrawing}
               onMouseUp={endDrawing}
+              onMouseOut={endDrawing}
               onMouseMove={draw}
               ref={drawCanvasRef}
               width={`900px`}
               height={`900px`}
               className="w-full bg-[url('/images/grid.png')] bg-contain bg-no-repeat object-contain"
             />
-            <DrawMenu
-              setLineColor={setLineColor}
-              setLineWidth={setLineWidth}
-              setLineOpacity={setLineOpacity}
-            />
+            <DrawMenu setLineColor={setLineColor} setLineWidth={setLineWidth} setLineOpacity={setLineOpacity} />
           </div>
           <div id="transformed-area" className="border-2">
             <div className="group grid grid-cols-3 grid-rows-3">
