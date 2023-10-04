@@ -1,4 +1,5 @@
 'use client'
+import DarkModeToggle from '@/components/DarkModeToggle'
 import DrawMenu from '@/components/DrawMenu'
 import JogWheel from '@/lib/jogwheel'
 import { useEffect, useRef, useState } from 'react'
@@ -97,27 +98,30 @@ export default function Home() {
 
   return (
     <>
-      <header className="container mx-auto my-4 flex items-center justify-center">
+      <header className="container mx-auto my-4 flex items-center justify-between">
         <h1 className="text-3xl">Origami Moving Cubes Drawing Designer</h1>
+        <DarkModeToggle />
       </header>
       <main className="container mx-auto">
         <div className="grid grid-cols-2">
           <div id="draw-area" className="border-2">
-            <canvas
-              id="draw-canvas"
-              onMouseDown={startDrawing}
-              onMouseUp={endDrawing}
-              onMouseOut={endDrawing}
-              onMouseMove={draw}
-              ref={drawCanvasRef}
-              width={`900px`}
-              height={`900px`}
-              className="w-full bg-[url('/images/grid.png')] bg-contain bg-no-repeat object-contain"
-            />
+            <div className="bg-white">
+              <canvas
+                id="draw-canvas"
+                onMouseDown={startDrawing}
+                onMouseUp={endDrawing}
+                onMouseOut={endDrawing}
+                onMouseMove={draw}
+                ref={drawCanvasRef}
+                width={`900px`}
+                height={`900px`}
+                className="w-full bg-[url('/images/grid.png')] bg-contain bg-no-repeat object-contain"
+              />
+            </div>
             <DrawMenu setLineColor={setLineColor} setLineWidth={setLineWidth} setLineOpacity={setLineOpacity} />
           </div>
           <div id="transformed-area" className="border-2 flex flex-col">
-            <div className="group grid grid-cols-3 grid-rows-3 z-10">
+            <div className="group grid grid-cols-3 grid-rows-3 z-10 bg-white">
               {[...Array(9).keys()].map((i) => {
                 return (
                   <canvas
@@ -126,7 +130,7 @@ export default function Home() {
                     ref={(el) => (transformedCanvasRef.current[i] = el!)}
                     width={`300px`}
                     height={`300px`}
-                    className={`cube w-full border-2 border-black object-contain animate-cube_${i}_out`}
+                    className={`cube w-full bg-white border-2 border-black object-contain animate-cube_${i}_out`}
                   />
                 )
               })}
