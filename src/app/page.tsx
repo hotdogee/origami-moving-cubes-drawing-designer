@@ -13,23 +13,18 @@ export default function Home() {
   const [lineColor, setLineColor] = useState('black')
   const [lineOpacity, setLineOpacity] = useState(0.1)
   // Preview
-  const wheelRef = useRef<any[] | null>([])
+  const wheelRef = useRef<any | null>(null)
   const [seekRange, setSeekRange] = useState(1)
   const [isPreview, setIsPreview] = useState(true)
 
   useEffect(() => {
-    if (wheelRef.current?.length == 0) {
-      wheelRef.current = transformedCanvasRef.current.map((canvas, i) => {
-        return new JogWheel(canvas, {
-          paused: true,
-        })
+    if (!wheelRef.current) {
+      wheelRef.current = new JogWheel(document.querySelectorAll('canvas.cube'), {
+        paused: true,
       })
     } else {
-      wheelRef.current?.map((wheel, i) => {
-        // wheel.seek(isPreview ? seekRange : 1 - seekRange)
-        wheel.seek(seekRange)
-        wheel.pause()
-      })
+      wheelRef.current.seek(seekRange)
+      wheelRef.current.pause()
     }
   }, [seekRange])
 
@@ -52,16 +47,17 @@ export default function Home() {
       //   wheelRef.current![i].play()
       // })
       // setSeekRange(0)
-      wheelRef.current?.map((wheel, i) => {
-        wheel.players[0].reverse()
-        wheel.players[0].onfinish = () => {
-          setSeekRange(0)
-          // wheel.seek(0)
-          // wheel.pause()
-          // wheel.players[0].finish()
-          console.log('reverse')
-        }
-      })
+      // wheelRef.current?.map((wheel, i) => {
+      //   wheel.players[0].reverse()
+      //   wheel.players[0].onfinish = () => {
+      //     setSeekRange(0)
+      //     // wheel.seek(0)
+      //     // wheel.pause()
+      //     // wheel.players[0].finish()
+      //     console.log('reverse')
+      //   }
+      // })
+      wheelRef.current.reverse()
     } else {
       // transformedCanvasRef.current.map((canvas, i) => {
       //   wheelRef.current![i].unplug()
@@ -74,17 +70,18 @@ export default function Home() {
       //   void canvas.offsetWidth
       // })
       // setSeekRange(1)
-      wheelRef.current?.map((wheel, i) => {
-        // wheel.players[0].play()
-        wheel.players[0].reverse()
-        wheel.players[0].onfinish = () => {
-          setSeekRange(1)
-          // wheel.seek(1)
-          // wheel.pause()
-          // wheel.players[0].finish()
-          console.log('play')
-        }
-      })
+      // wheelRef.current?.map((wheel, i) => {
+      //   // wheel.players[0].play()
+      //   wheel.players[0].reverse()
+      //   wheel.players[0].onfinish = () => {
+      //     setSeekRange(1)
+      //     // wheel.seek(1)
+      //     // wheel.pause()
+      //     // wheel.players[0].finish()
+      //     console.log('play')
+      //   }
+      // })
+      wheelRef.current.reverse()
     }
   }, [isPreview])
 
@@ -166,7 +163,7 @@ export default function Home() {
                     ref={(el) => (transformedCanvasRef.current[i] = el!)}
                     width={`300px`}
                     height={`300px`}
-                    className={`w-full border-2 border-black object-contain animate-cube_${i}_out`}
+                    className={`cube w-full border-2 border-black object-contain animate-cube_${i}_out`}
                   />
                 )
               })}
