@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jogwheel": "^1.4.5",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
