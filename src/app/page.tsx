@@ -34,63 +34,16 @@ export default function Home() {
 
   useEffect(() => {
     if (!isPreview) {
-      // transformedCanvasRef.current.map((canvas, i) => {
-      //   wheelRef.current![i].unplug()
-      //   canvas.classList.remove(`animate-cube_${i}_out`)
-      //   canvas.classList.remove(`${i % 2 ? 'rotate-[-90deg]' : 'rotate-90'}`)
-      //   // Trigger a reflow between removing and adding the class name
-      //   // reading the property requires a recalc
-      //   void canvas.offsetWidth
-      //   canvas.classList.add(`animate-cube_${i}_in`)
-      //   canvas.classList.add(`rotate-0`)
-      //   wheelRef.current![i].plug()
-      //   void canvas.offsetWidth
-      // })
-      // setSeekRange(1)
-      // transformedCanvasRef.current.map((canvas, i) => {
-      //   wheelRef.current![i].play()
-      // })
-      // setSeekRange(0)
-      // wheelRef.current?.map((wheel, i) => {
-      //   wheel.players[0].reverse()
-      //   wheel.players[0].onfinish = () => {
-      //     setSeekRange(0)
-      //     // wheel.seek(0)
-      //     // wheel.pause()
-      //     // wheel.players[0].finish()
-      //     console.log('reverse')
-      //   }
-      // })
       if (wheelRef.current.players[0].playbackRate > 0) {
         wheelRef.current.reverse()
         console.log('reverse')
+        Promise.all(wheelRef.current.players.map((animation: any) => animation.finished)).then(() => setSeekRange(0))
       }
     } else {
-      // transformedCanvasRef.current.map((canvas, i) => {
-      //   wheelRef.current![i].unplug()
-      //   canvas.classList.remove(`animate-cube_${i}_in`)
-      //   canvas.classList.remove(`rotate-0`)
-      //   void canvas.offsetWidth
-      //   canvas.classList.add(`animate-cube_${i}_out`)
-      //   canvas.classList.add(`${i % 2 ? 'rotate-[-90deg]' : 'rotate-90'}`)
-      //   wheelRef.current![i].plug()
-      //   void canvas.offsetWidth
-      // })
-      // setSeekRange(1)
-      // wheelRef.current?.map((wheel, i) => {
-      //   // wheel.players[0].play()
-      //   wheel.players[0].reverse()
-      //   wheel.players[0].onfinish = () => {
-      //     setSeekRange(1)
-      //     // wheel.seek(1)
-      //     // wheel.pause()
-      //     // wheel.players[0].finish()
-      //     console.log('play')
-      //   }
-      // })
       if (wheelRef.current.players[0].playbackRate < 0) {
         wheelRef.current.reverse()
         console.log('play')
+        Promise.all(wheelRef.current.players.map((animation: any) => animation.finished)).then(() => setSeekRange(1))
       }
     }
   }, [isPreview])
