@@ -62,8 +62,8 @@ let config: Config = {
     })
   }
   if (config?.theme?.extend?.animation) {
-    ;(config.theme.extend.animation as Record<string, string>)[`cube_${i}_in`] = `cube_${i}_in 1s linear 1`
-    ;(config.theme.extend.animation as Record<string, string>)[`cube_${i}_out`] = `cube_${i}_out 1s linear 1`
+    ;(config.theme.extend.animation as Record<string, string>)[`cube_${i}_in`] = `cube_${i}_in 1s linear 1 forwards`
+    ;(config.theme.extend.animation as Record<string, string>)[`cube_${i}_out`] = `cube_${i}_out 1s linear 1 forwards`
   }
 })
 

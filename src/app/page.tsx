@@ -1,5 +1,6 @@
 'use client'
 import DrawMenu from '@/components/DrawMenu'
+import JogWheel from '@/lib/jogwheel'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
@@ -12,21 +13,77 @@ export default function Home() {
   const [lineColor, setLineColor] = useState('black')
   const [lineOpacity, setLineOpacity] = useState(0.1)
   // Preview
+  const wheelRef = useRef<any[] | null>([])
+  const [seekRange, setSeekRange] = useState(1)
   const [isPreview, setIsPreview] = useState(true)
+
   useEffect(() => {
-    if (!isPreview) {
-      transformedCanvasRef.current.map((canvas, i) => {
-        canvas.classList.remove(`animate-cube_${i}_out`)
-        // Trigger a reflow between removing and adding the class name
-        // reading the property requires a recalc
-        void canvas.offsetWidth
-        canvas.classList.add(`animate-cube_${i}_in`)
+    if (wheelRef.current?.length == 0) {
+      wheelRef.current = transformedCanvasRef.current.map((canvas, i) => {
+        return new JogWheel(canvas, {
+          paused: true,
+        })
       })
     } else {
-      transformedCanvasRef.current.map((canvas, i) => {
-        canvas.classList.remove(`animate-cube_${i}_in`)
-        void canvas.offsetWidth
-        canvas.classList.add(`animate-cube_${i}_out`)
+      wheelRef.current?.map((wheel, i) => {
+        // wheel.seek(isPreview ? seekRange : 1 - seekRange)
+        wheel.seek(seekRange)
+        wheel.pause()
+      })
+    }
+  }, [seekRange])
+
+  useEffect(() => {
+    if (!isPreview) {
+      // transformedCanvasRef.current.map((canvas, i) => {
+      //   wheelRef.current![i].unplug()
+      //   canvas.classList.remove(`animate-cube_${i}_out`)
+      //   canvas.classList.remove(`${i % 2 ? 'rotate-[-90deg]' : 'rotate-90'}`)
+      //   // Trigger a reflow between removing and adding the class name
+      //   // reading the property requires a recalc
+      //   void canvas.offsetWidth
+      //   canvas.classList.add(`animate-cube_${i}_in`)
+      //   canvas.classList.add(`rotate-0`)
+      //   wheelRef.current![i].plug()
+      //   void canvas.offsetWidth
+      // })
+      // setSeekRange(1)
+      // transformedCanvasRef.current.map((canvas, i) => {
+      //   wheelRef.current![i].play()
+      // })
+      // setSeekRange(0)
+      wheelRef.current?.map((wheel, i) => {
+        wheel.players[0].reverse()
+        wheel.players[0].onfinish = () => {
+          setSeekRange(0)
+          // wheel.seek(0)
+          // wheel.pause()
+          // wheel.players[0].finish()
+          console.log('reverse')
+        }
+      })
+    } else {
+      // transformedCanvasRef.current.map((canvas, i) => {
+      //   wheelRef.current![i].unplug()
+      //   canvas.classList.remove(`animate-cube_${i}_in`)
+      //   canvas.classList.remove(`rotate-0`)
+      //   void canvas.offsetWidth
+      //   canvas.classList.add(`animate-cube_${i}_out`)
+      //   canvas.classList.add(`${i % 2 ? 'rotate-[-90deg]' : 'rotate-90'}`)
+      //   wheelRef.current![i].plug()
+      //   void canvas.offsetWidth
+      // })
+      // setSeekRange(1)
+      wheelRef.current?.map((wheel, i) => {
+        // wheel.players[0].play()
+        wheel.players[0].reverse()
+        wheel.players[0].onfinish = () => {
+          setSeekRange(1)
+          // wheel.seek(1)
+          // wheel.pause()
+          // wheel.players[0].finish()
+          console.log('play')
+        }
       })
     }
   }, [isPreview])
@@ -99,25 +156,23 @@ export default function Home() {
             />
             <DrawMenu setLineColor={setLineColor} setLineWidth={setLineWidth} setLineOpacity={setLineOpacity} />
           </div>
-          <div id="transformed-area" className="border-2">
-            <div className="group grid grid-cols-3 grid-rows-3">
+          <div id="transformed-area" className="border-2 flex flex-col">
+            <div className="group grid grid-cols-3 grid-rows-3 z-10">
               {[...Array(9).keys()].map((i) => {
                 return (
                   <canvas
                     key={i}
+                    id={`canvas${i}`}
                     ref={(el) => (transformedCanvasRef.current[i] = el!)}
                     width={`300px`}
                     height={`300px`}
-                    className={`w-full ${
-                      i % 2 ? 'rotate-[-90deg]' : 'rotate-90'
-                    }  animate-cube_${i}_out border-2 border-black object-contain ${
-                      isPreview ? '' : `animate-cube_${i}_in rotate-0`
-                    }`}
+                    className={`w-full border-2 border-black object-contain animate-cube_${i}_out`}
                   />
                 )
               })}
             </div>
-            <div className="flex items-center justify-center mx-auto p-4">
+
+            <div id="preview-menu" className="flex items-center justify-center mx-10 my-2 h-12 z-20">
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
@@ -129,6 +184,17 @@ export default function Home() {
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                 <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Preview</span>
               </label>
+              <input
+                type="range"
+                className="flex-1 m-10 transparent h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
+                min={0}
+                max={1}
+                step={0.01}
+                value={seekRange}
+                onChange={(e) => {
+                  setSeekRange(parseFloat(e.target.value))
+                }}
+              />
             </div>
           </div>
         </div>
