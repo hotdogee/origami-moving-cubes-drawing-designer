@@ -14,17 +14,21 @@ export default function Home() {
   const [lineOpacity, setLineOpacity] = useState(0.1)
   // Preview
   const wheelRef = useRef<any | null>(null)
-  const [seekRange, setSeekRange] = useState(1)
   const [isPreview, setIsPreview] = useState(true)
+  const [seekRange, setSeekRange] = useState(1)
 
   useEffect(() => {
     if (!wheelRef.current) {
       wheelRef.current = new JogWheel(document.querySelectorAll('canvas.cube'), {
         paused: true,
       })
+      console.log('init')
     } else {
-      wheelRef.current.seek(seekRange)
-      wheelRef.current.pause()
+      if (wheelRef.current.players[0].playState !== 'running') {
+        console.log('seek', wheelRef.current.players[0].playState)
+        wheelRef.current.seek(seekRange)
+        wheelRef.current.pause()
+      }
     }
   }, [seekRange])
 
@@ -57,7 +61,10 @@ export default function Home() {
       //     console.log('reverse')
       //   }
       // })
-      wheelRef.current.reverse()
+      if (wheelRef.current.players[0].playbackRate > 0) {
+        wheelRef.current.reverse()
+        console.log('reverse')
+      }
     } else {
       // transformedCanvasRef.current.map((canvas, i) => {
       //   wheelRef.current![i].unplug()
@@ -81,7 +88,10 @@ export default function Home() {
       //     console.log('play')
       //   }
       // })
-      wheelRef.current.reverse()
+      if (wheelRef.current.players[0].playbackRate < 0) {
+        wheelRef.current.reverse()
+        console.log('play')
+      }
     }
   }, [isPreview])
 
