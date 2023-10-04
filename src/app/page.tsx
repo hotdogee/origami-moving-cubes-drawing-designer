@@ -121,7 +121,7 @@ export default function Home() {
             <DrawMenu setLineColor={setLineColor} setLineWidth={setLineWidth} setLineOpacity={setLineOpacity} />
           </div>
           <div id="transformed-area" className="border-2 flex flex-col">
-            <div className="group grid grid-cols-3 grid-rows-3 z-10 bg-white">
+            <div className="group grid grid-cols-3 grid-rows-3 z-10 dark:bg-gray-600">
               {[...Array(9).keys()].map((i) => {
                 return (
                   <canvas
