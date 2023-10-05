@@ -1,6 +1,5 @@
 'use client'
 import DarkModeToggle from '@/components/DarkModeToggle'
-import DrawMenu from '@/components/DrawMenu'
 import JogWheel from '@/lib/jogwheel'
 import { useEffect, useRef, useState } from 'react'
 
@@ -14,7 +13,7 @@ export default function Home() {
   const [isDrawing, setIsDrawing] = useState(false)
   const [lineWidth, setLineWidth] = useState(5)
   const [lineColor, setLineColor] = useState('black')
-  const [lineOpacity, setLineOpacity] = useState(0.1)
+  const [lineOpacity, setLineOpacity] = useState(0.5)
   // Preview
   const wheelRef = useRef<any | null>(null)
   const [isPreview, setIsPreview] = useState(true)
@@ -160,7 +159,39 @@ export default function Home() {
                 className="w-full bg-[url('/images/grid.png')] bg-contain bg-no-repeat object-contain"
               />
             </div>
-            <DrawMenu setLineColor={setLineColor} setLineWidth={setLineWidth} setLineOpacity={setLineOpacity} />
+            <div
+              id="Menu"
+              className="mx-auto mt-2 flex h-12 w-[650px] items-center justify-evenly rounded-lg bg-gray-400/20"
+            >
+              <label>Brush Color </label>
+              <input
+                type="color"
+                value={lineColor}
+                onChange={(e) => {
+                  setLineColor(e.target.value)
+                }}
+              />
+              <label>Brush Width </label>
+              <input
+                type="range"
+                min="3"
+                max="20"
+                value={lineWidth}
+                onChange={(e) => {
+                  setLineWidth(Number(e.target.value))
+                }}
+              />
+              <label>Brush Opacity</label>
+              <input
+                type="range"
+                min="1"
+                max="100"
+                value={lineOpacity * 100}
+                onChange={(e) => {
+                  setLineOpacity(Number(e.target.value) / 100)
+                }}
+              />
+            </div>
           </div>
           <div id="transformed-area" className="border-2 flex flex-col">
             <div className="group grid grid-cols-3 grid-rows-3 z-10 dark:bg-gray-600">
