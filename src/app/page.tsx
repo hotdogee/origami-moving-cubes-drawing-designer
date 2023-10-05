@@ -2,6 +2,7 @@
 import DarkModeToggle from '@/components/DarkModeToggle'
 import useLocalStorageState from '@/hooks/useLocalStorageState'
 import JogWheel from '@/lib/jogwheel'
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
@@ -124,7 +125,16 @@ export default function Home() {
   return (
     <>
       <header className="container mx-auto my-4 flex items-center justify-between">
-        <h1 className="text-3xl">Origami Moving Cubes Drawing Designer</h1>
+        <div className="flex items-center justify-items-start">
+          <Image
+            src="/android-chrome-512x512.png"
+            alt="Logo"
+            width={42}
+            height={42}
+            className="drop-shadow-[0_0_2px_#000] dark:drop-shadow-[0_0_2px_#fff] dark:invert"
+          />
+          <h1 className="text-3xl ml-2">Origami Moving Cubes Drawing Designer</h1>
+        </div>
         <DarkModeToggle />
       </header>
       <main className="container mx-auto">
