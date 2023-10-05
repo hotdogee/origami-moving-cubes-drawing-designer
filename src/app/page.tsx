@@ -1,5 +1,6 @@
 'use client'
 import DarkModeToggle from '@/components/DarkModeToggle'
+import useLocalStorageState from '@/hooks/useLocalStorageState'
 import JogWheel from '@/lib/jogwheel'
 import { useEffect, useRef, useState } from 'react'
 
@@ -11,9 +12,9 @@ export default function Home() {
   const previewCanvasRef = useRef<HTMLCanvasElement[]>([])
   const previewCtxRef = useRef<CanvasRenderingContext2D[]>([])
   const [isDrawing, setIsDrawing] = useState(false)
-  const [lineWidth, setLineWidth] = useState(5)
-  const [lineColor, setLineColor] = useState('black')
-  const [lineOpacity, setLineOpacity] = useState(0.5)
+  const [lineWidth, setLineWidth] = useLocalStorageState('lineWidth', 5)
+  const [lineColor, setLineColor] = useLocalStorageState('lineColor', 'black')
+  const [lineOpacity, setLineOpacity] = useLocalStorageState('lineOpacity', 0.5)
   // Preview
   const wheelRef = useRef<any | null>(null)
   const [isPreview, setIsPreview] = useState(true)
