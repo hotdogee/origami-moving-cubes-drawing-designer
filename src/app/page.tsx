@@ -5,10 +5,12 @@ import JogWheel from '@/lib/jogwheel'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
-  const drawCanvasRef = useRef<HTMLCanvasElement>(null)
-  const transformedCanvasRef = useRef<HTMLCanvasElement[]>([])
-  const ctxRef = useRef<CanvasRenderingContext2D | null>(null)
-  const transformedCtxRef = useRef<CanvasRenderingContext2D[] | null>([])
+  const drawCanvasRef = useRef<HTMLCanvasElement | null>(null)
+  const drawCtxRef = useRef<CanvasRenderingContext2D | null>(null)
+  const cursorCanvasRef = useRef<HTMLCanvasElement | null>(null)
+  const cursorCtxRef = useRef<CanvasRenderingContext2D | null>(null)
+  const previewCanvasRef = useRef<HTMLCanvasElement[]>([])
+  const previewCtxRef = useRef<CanvasRenderingContext2D[]>([])
   const [isDrawing, setIsDrawing] = useState(false)
   const [lineWidth, setLineWidth] = useState(5)
   const [lineColor, setLineColor] = useState('black')
@@ -52,48 +54,71 @@ export default function Home() {
   // Initialization when the component
   // mounts for the first time
   useEffect(() => {
-    const ctx = drawCanvasRef.current?.getContext('2d')!
-    ctx.lineCap = 'round'
-    ctx.lineJoin = 'round'
-    ctx.globalAlpha = lineOpacity
-    ctx.strokeStyle = lineColor
-    ctx.lineWidth = lineWidth
-    ctxRef.current = ctx
-    transformedCtxRef.current = transformedCanvasRef.current
-      .map((canvas) => canvas.getContext('2d'))
-      .filter((ctx) => ctx !== null) as CanvasRenderingContext2D[]
+    if (drawCtxRef.current) {
+      drawCtxRef.current.lineCap = 'round'
+      drawCtxRef.current.lineJoin = 'round'
+      drawCtxRef.current.globalAlpha = lineOpacity
+      drawCtxRef.current.strokeStyle = lineColor
+      drawCtxRef.current.lineWidth = lineWidth
+    }
+    if (cursorCtxRef.current) {
+      cursorCtxRef.current.lineCap = 'round'
+      cursorCtxRef.current.lineJoin = 'round'
+      cursorCtxRef.current.globalAlpha = lineOpacity
+      cursorCtxRef.current.strokeStyle = lineColor
+      cursorCtxRef.current.fillStyle = lineColor
+      cursorCtxRef.current.lineWidth = lineWidth
+    }
   }, [lineColor, lineOpacity, lineWidth])
 
   // Function for starting the drawing
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    let rect = drawCanvasRef.current?.getBoundingClientRect(),
-      scaleX = drawCanvasRef.current?.width! / rect!.width,
-      scaleY = drawCanvasRef.current?.height! / rect!.height
-    ctxRef.current?.beginPath()
-    ctxRef.current?.moveTo(e.nativeEvent.offsetX * scaleX, e.nativeEvent.offsetY * scaleY)
+    const rect = drawCanvasRef.current?.getBoundingClientRect()
+    const scaleX = drawCanvasRef.current?.width! / rect!.width
+    const scaleY = drawCanvasRef.current?.height! / rect!.height
+    drawCtxRef.current?.beginPath()
+    drawCtxRef.current?.moveTo(e.nativeEvent.offsetX * scaleX, e.nativeEvent.offsetY * scaleY)
     setIsDrawing(true)
   }
 
   // Function for ending the drawing
   const endDrawing = () => {
-    ctxRef.current?.closePath()
+    drawCtxRef.current?.closePath()
     setIsDrawing(false)
   }
 
   const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) {
-      return
+    const rect = drawCanvasRef.current?.getBoundingClientRect()
+    const scaleX = drawCanvasRef.current?.width! / rect!.width
+    const scaleY = drawCanvasRef.current?.height! / rect!.height
+    // cursor
+    if (cursorCtxRef.current) {
+      cursorCtxRef.current.clearRect(0, 0, cursorCanvasRef.current!.width, cursorCanvasRef.current!.height)
+      cursorCtxRef.current.beginPath()
+      cursorCtxRef.current.arc(
+        e.nativeEvent.offsetX * scaleX,
+        e.nativeEvent.offsetY * scaleY,
+        lineWidth / 2,
+        0,
+        2 * Math.PI
+      )
+      cursorCtxRef.current.fill()
     }
-    let rect = drawCanvasRef.current?.getBoundingClientRect(),
-      scaleX = drawCanvasRef.current?.width! / rect!.width,
-      scaleY = drawCanvasRef.current?.height! / rect!.height
-    ctxRef.current?.lineTo(e.nativeEvent.offsetX * scaleX, e.nativeEvent.offsetY * scaleY)
-    ctxRef.current?.stroke()
-    transformedCtxRef.current?.map((ctx, i) => {
-      let x = i % 3
-      let y = Math.floor(i / 3)
-      ctx.drawImage(drawCanvasRef.current!, x * 300, y * 300, 300, 300, 0, 0, 300, 300)
-    })
+    // draw
+    if (isDrawing) {
+      drawCtxRef.current?.lineTo(e.nativeEvent.offsetX * scaleX, e.nativeEvent.offsetY * scaleY)
+      drawCtxRef.current?.stroke()
+    }
+    // preview
+    if (previewCtxRef.current) {
+      previewCtxRef.current?.map((ctx, i) => {
+        let x = i % 3
+        let y = Math.floor(i / 3)
+        ctx.clearRect(0, 0, previewCanvasRef.current[i]!.width, previewCanvasRef.current[i]!.height)
+        ctx.drawImage(drawCanvasRef.current!, x * 300, y * 300, 300, 300, 0, 0, 300, 300)
+        ctx.drawImage(cursorCanvasRef.current!, x * 300, y * 300, 300, 300, 0, 0, 300, 300)
+      })
+    }
   }
 
   return (
@@ -105,14 +130,31 @@ export default function Home() {
       <main className="container mx-auto">
         <div className="grid grid-cols-2">
           <div id="draw-area" className="border-2">
-            <div className="bg-white">
+            <div className="bg-white relative">
               <canvas
-                id="draw-canvas"
+                id="cursor-canvas"
                 onMouseDown={startDrawing}
                 onMouseUp={endDrawing}
                 onMouseOut={endDrawing}
                 onMouseMove={draw}
-                ref={drawCanvasRef}
+                ref={(canvas) => {
+                  if (canvas) {
+                    cursorCanvasRef.current = canvas
+                    cursorCtxRef.current = canvas.getContext('2d')!
+                  }
+                }}
+                width={`900px`}
+                height={`900px`}
+                className="absolute w-full"
+              />
+              <canvas
+                id="draw-canvas"
+                ref={(canvas) => {
+                  if (canvas) {
+                    drawCanvasRef.current = canvas
+                    drawCtxRef.current = canvas.getContext('2d')!
+                  }
+                }}
                 width={`900px`}
                 height={`900px`}
                 className="w-full bg-[url('/images/grid.png')] bg-contain bg-no-repeat object-contain"
@@ -127,7 +169,12 @@ export default function Home() {
                   <canvas
                     key={i}
                     id={`canvas${i}`}
-                    ref={(el) => (transformedCanvasRef.current[i] = el!)}
+                    ref={(canvas) => {
+                      if (canvas) {
+                        previewCanvasRef.current[i] = canvas
+                        previewCtxRef.current[i] = canvas.getContext('2d')!
+                      }
+                    }}
                     width={`300px`}
                     height={`300px`}
                     className={`cube w-full bg-white border-2 border-black object-contain animate-cube_${i}_out`}
