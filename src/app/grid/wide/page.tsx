@@ -6,8 +6,8 @@ export default function TestPage() {
     var canvas = document.querySelectorAll('canvas')
     for (var i = 0; i < canvas.length; i++) {
       let ctx = canvas[i].getContext('2d')
-      ctx.fillStyle = '#999'
-      ctx.fillRect(0, 0, 900, 900)
+      ctx!.fillStyle = '#999'
+      ctx!.fillRect(0, 0, 900, 900)
     }
   }, [])
   // const header_height = 52
