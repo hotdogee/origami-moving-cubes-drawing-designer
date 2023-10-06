@@ -111,4 +111,7 @@ The icon inside the safe area is guaranteed to be displayed independently from t
 
 - Blitz.js
 - https://github.com/shadowwalker/next-pwa/
+  - AppDir fork
+    https://github.com/DuCanhGH/next-pwa
+    https://ducanh-next-pwa.vercel.app/docs
 - https://github.com/i18next/next-i18next

@@ -11,7 +11,6 @@ export const metadata: Metadata = {
     { media: '(prefers-color-scheme: light)', color: '#f3f4f6' },
     { media: '(prefers-color-scheme: dark)', color: '#1f2937' },
   ],
-  // themeColor: '#f3f4f6',
 }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

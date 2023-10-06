@@ -192,7 +192,7 @@ export default function Home() {
         <header className="mx-2 flex items-center justify-between wide:col-span-2">
           <div className="flex items-center justify-items-start">
             <Image
-              src="/android-chrome-512x512.png"
+              src="/icons/android-chrome-512x512.png"
               alt="Logo"
               width={40}
               height={40}
