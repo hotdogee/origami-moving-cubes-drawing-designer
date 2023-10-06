@@ -279,9 +279,10 @@ export default function Home() {
           </div>
         </main>
         <menu className="order-3 flex items-center justify-center wide:order-4 wide:col-span-2">
-          <div className="relative flex flex-1 items-center justify-center pl-2 md:hidden">
-            <label className="relative mx-4 inline-flex cursor-pointer items-center">
+          <div className="relative flex flex-none items-center justify-center md:hidden md:pl-2">
+            <label className="relative ml-2 inline-flex cursor-pointer items-center">
               <input
+                aria-label="Bursh Menu Toggle"
                 type="checkbox"
                 value=""
                 className="peer sr-only"
@@ -309,11 +310,11 @@ export default function Home() {
               } absolute left-2 top-12 z-40 flex h-auto w-auto flex-col space-y-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800`}
             >
               <div className="flex flex-1 items-center justify-center space-x-1 text-sm leading-tight">
-                <label htmlFor="color" className="w-20 flex-none">
+                <label htmlFor="color-mobile" className="w-20 flex-none">
                   Brush Color
                 </label>
                 <input
-                  id="color"
+                  id="color-mobile"
                   type="color"
                   value={lineColor}
                   className="flex-auto"
@@ -401,10 +402,11 @@ export default function Home() {
           </div>
           <div
             id="preview-menu"
-            className="z-20 mx-2 my-2 flex flex-auto items-center justify-center md:flex-1"
+            className="z-20 my-2 mr-2 flex flex-auto items-center justify-center md:mx-2 md:flex-1"
           >
-            <label className="relative mx-4 inline-flex flex-1 cursor-pointer items-center">
+            <div className="relative mx-2 inline-flex flex-none cursor-pointer items-center md:mx-4">
               <input
+                id="seek-toggle"
                 type="checkbox"
                 value=""
                 className="peer sr-only"
@@ -412,28 +414,32 @@ export default function Home() {
                 onChange={(e) => setIsPreview(e.target.checked)}
               />
               <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-              <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label
+                htmlFor="seek-toggle"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
                 Preview
-              </span>
-            </label>
-            <label htmlFor="seek-range" className="hidden">
-              Preview Slider
-            </label>
-            <input
-              id="seek-range"
-              type="range"
-              className="transparent m-1 h-1.5 w-full flex-auto cursor-pointer touch-none appearance-none rounded-lg border-transparent bg-neutral-200 md:m-10"
-              min={0}
-              max={1}
-              step={0.01}
-              value={seekRange}
-              onChange={(e) => {
-                setSeekRange(parseFloat(e.target.value))
-              }}
-            />
+              </label>
+            </div>
+            <div className="flex-auto text-sm leading-tight md:mx-4">
+              <label>
+                <span className="text-gray-900 dark:text-gray-300">Transistion</span>
+                <input
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  className="w-full"
+                  value={seekRange}
+                  onChange={(e) => {
+                    setSeekRange(parseFloat(e.target.value))
+                  }}
+                />
+              </label>
+            </div>
           </div>
         </menu>
-        <footer className="order-5 mx-4 flex flex-row items-center justify-between text-gray-400 transition-colors dark:text-gray-500 wide:col-span-2">
+        <footer className="order-5 mx-4 flex flex-row items-center justify-between text-gray-600 transition-colors dark:text-gray-400 wide:col-span-2">
           <div className="flex flex-auto space-x-2 text-sm">
             <div>{`© ${new Date().getFullYear()}`}</div>
             <a
@@ -465,6 +471,7 @@ export default function Home() {
                   viewBox="0 0 20 20"
                   className="h-6 w-6 fill-current hover:text-gray-800 hover:drop-shadow-md dark:hover:text-gray-200"
                 >
+                  <title>Mail icon</title>
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>

@@ -115,3 +115,9 @@ The icon inside the safe area is guaranteed to be displayed independently from t
     https://github.com/DuCanhGH/next-pwa
     https://ducanh-next-pwa.vercel.app/docs
 - https://github.com/i18next/next-i18next
+- https://contentlayer.dev/
+  - Contentlayer is a content SDK that validates and transforms your content into type-safe JSON data you can easily import into your application.
+
+# Lighthouse Audit
+
+- Run with incognito mode to avoid extensions slowing down the render
