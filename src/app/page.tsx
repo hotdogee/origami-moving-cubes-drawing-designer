@@ -91,7 +91,7 @@ export default function Home() {
       )
       // fill white background
       gridCtxRef.current.fillRect(0, 0, gridCanvasRef.current!.width, gridCanvasRef.current!.height)
-      gridCtxRef.current.fillStyle = '#fff'
+      gridCtxRef.current.fillStyle = 'rgba(255,255,255,1)'
       gridCtxRef.current.fill()
 
       // minor grid
