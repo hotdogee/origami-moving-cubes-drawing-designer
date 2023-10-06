@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "^9.7.1",
     "jogwheel": "^1.4.5",
     "next": "latest",
     "react": "latest",
