@@ -99,3 +99,10 @@ https://www.w3schools.com/jsref/api_canvas.asp
 - Added `touch-none` class to UI elements you want to prevent the default dragging behavior:
   - canvas
   - range slider
+
+# Maskable Icons
+
+The idea is to keep the core section of our icon designs within a safe area, which is a central portion of the image with a radius equal to 40% of the minimum icon width and height.
+The icon inside the safe area is guaranteed to be displayed independently from the rendered shape, while outside of this portion, it might get cropped, according to which icon shape is used.
+
+- https://maskable.app/editor
