@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^9.7.1",
+    "@vercel/analytics": "^1.1.0",
     "jogwheel": "^1.4.5",
     "next": "latest",
     "react": "latest",
