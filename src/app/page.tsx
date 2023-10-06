@@ -307,7 +307,7 @@ export default function Home() {
             <div
               className={`${
                 brushMenuOpen ? 'flex' : 'hidden'
-              } absolute left-2 top-12 z-40 flex h-auto w-auto flex-col space-y-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800`}
+              } absolute left-2 top-12 z-40 flex h-auto w-auto flex-col space-y-6 rounded-lg bg-white p-6 text-gray-900 shadow-lg dark:bg-gray-800 dark:text-gray-300`}
             >
               <div className="flex flex-1 items-center justify-center space-x-1 text-sm leading-tight">
                 <label htmlFor="color-mobile" className="w-20 flex-none">
@@ -355,7 +355,7 @@ export default function Home() {
           </div>
           <div
             id="brush-menu"
-            className="mx-2 hidden flex-1 items-center justify-center space-x-3 rounded-lg px-2 md:flex"
+            className="mx-2 hidden flex-1 items-center justify-center space-x-3 rounded-lg px-2 text-gray-900 dark:text-gray-300 md:flex"
           >
             <div className="flex flex-1 items-center justify-center space-x-1 text-sm leading-tight">
               <label htmlFor="color" className="w-20 flex-none">
@@ -416,7 +416,7 @@ export default function Home() {
               <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
               <label
                 htmlFor="seek-toggle"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ml-2 text-sm text-gray-900 dark:text-gray-300"
               >
                 Preview
               </label>
