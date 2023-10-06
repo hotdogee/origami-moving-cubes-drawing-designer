@@ -21,16 +21,17 @@ Play with it here: https://origami-moving-cubes-drawing-designer.vercel.app/
   - Switch between different states with smooth animations or manually scrub through transitions for precise control.
 - **Optimized Responsive Design**
   - Maximizes screen real estate usage to provide an optimal design experience.
-- **"Add to Home Screen" Optimized**
-<table>
-  <tr>
-    <td colspan="2">Responsive Design with CSS <tt>aspect-ratio</tt> @media query </td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/a99505ef-58cc-49e4-adf5-76449ddb12e0" width="400"></td>
-    <td><img src="https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/8a52d28d-722a-43f5-aefb-e50c2a141423" width="400"></td>
-  </tr>
-</table>
+- **Offline support**
+  - Able to load and reload without an active network connection.
+  <table>
+    <tr>
+      <td colspan="2">Responsive Design with CSS <tt>aspect-ratio</tt> @media query </td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/a99505ef-58cc-49e4-adf5-76449ddb12e0" width="400"></td>
+      <td><img src="https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/8a52d28d-722a-43f5-aefb-e50c2a141423" width="400"></td>
+    </tr>
+  </table>
 
 # Tech Stack
 
@@ -40,7 +41,7 @@ Play with it here: https://origami-moving-cubes-drawing-designer.vercel.app/
 * [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework.
 * Canvas API: Simple custom drawing implementation.
 * CSS animations with custom `@keyframes`
-* Progressive Web App Optimized
+* Progressive Web App (PWA) optimized with offline capability.
 * TypeScript
 
 # Screen Caps
