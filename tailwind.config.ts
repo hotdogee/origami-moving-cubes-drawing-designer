@@ -9,15 +9,15 @@ let config: Config = {
   darkMode: 'class',
   safelist: [
     {
-      pattern: /animate-cube_[0-9]_out/,
-    },
-    {
-      pattern: /animate-cube_[0-9]_in/,
-      variants: ['group-hover'],
+      pattern: /animate-cube_[0-9]/,
     },
   ],
   theme: {
     extend: {
+      screens: {
+        tall: { raw: '(max-aspect-ratio: 1/1)' },
+        wide: { raw: '(min-aspect-ratio: 1/1)' },
+      },
       keyframes: {},
       animation: {},
     },
@@ -32,24 +32,10 @@ let config: Config = {
   let yDirection = y === 0 ? -1 : y === 1 ? 0 : 1
   let xDirection = x === 0 ? -1 : x === 1 ? 0 : 1
   if (config?.theme?.extend?.keyframes) {
-    ;(config.theme.extend.keyframes as Record<string, Record<string, Record<string, string>>>)[`cube_${i}_in`] = {}
+    ;(config.theme.extend.keyframes as Record<string, Record<string, Record<string, string>>>)[`cube_${i}`] = {}
     ;[...Array(11).keys()].map((k) => {
       if (config?.theme?.extend?.keyframes) {
-        ;(config.theme.extend.keyframes as Record<string, Record<string, Record<string, string>>>)[`cube_${i}_in`][
-          `${k * 10}%`
-        ] = {
-          transform: `translateY(calc(100%*${
-            yDirection * (Math.cos(((k * 9 - 45) / 180) * Math.PI) / Math.cos((45 / 180) * Math.PI) - 1)
-          })) translateX(calc(100%*${
-            xDirection * (Math.cos(((k * 9 - 45) / 180) * Math.PI) / Math.cos((45 / 180) * Math.PI) - 1)
-          })) rotate(${isClockwise * (90 - k * 9)}deg) `,
-        }
-      }
-    })
-    ;(config.theme.extend.keyframes as Record<string, Record<string, Record<string, string>>>)[`cube_${i}_out`] = {}
-    ;[...Array(11).keys()].map((k) => {
-      if (config?.theme?.extend?.keyframes) {
-        ;(config.theme.extend.keyframes as Record<string, Record<string, Record<string, string>>>)[`cube_${i}_out`][
+        ;(config.theme.extend.keyframes as Record<string, Record<string, Record<string, string>>>)[`cube_${i}`][
           `${k * 10}%`
         ] = {
           transform: `translateY(calc(100%*${
@@ -62,8 +48,7 @@ let config: Config = {
     })
   }
   if (config?.theme?.extend?.animation) {
-    ;(config.theme.extend.animation as Record<string, string>)[`cube_${i}_in`] = `cube_${i}_in 1s linear 1 forwards`
-    ;(config.theme.extend.animation as Record<string, string>)[`cube_${i}_out`] = `cube_${i}_out 1s linear 1 forwards`
+    ;(config.theme.extend.animation as Record<string, string>)[`cube_${i}`] = `cube_${i} 1s linear 1 forwards`
   }
 })
 
