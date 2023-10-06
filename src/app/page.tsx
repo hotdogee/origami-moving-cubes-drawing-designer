@@ -117,9 +117,6 @@ export default function Home() {
       }
       gridCtxRef.current.stroke()
     }
-    if (navigator.userAgent.match(/Android/i)) {
-      window.scrollTo(0, 1)
-    }
   })
 
   // Function for starting the drawing
@@ -146,16 +143,7 @@ export default function Home() {
     const rect = drawCanvasRef.current?.getBoundingClientRect()
     const scaleX = drawCanvasRef.current?.width! / rect!.width
     const scaleY = drawCanvasRef.current?.height! / rect!.height
-    // console.log(
-    //   'draw',
-    //   rect,
-    //   drawCanvasRef.current?.width!, // 900
-    //   drawCanvasRef.current?.height!, // 900
-    //   scaleX,
-    //   scaleY,
-    //   e.nativeEvent.offsetX,
-    //   e.nativeEvent.offsetY
-    // )
+
     // cursor
     if (cursorCtxRef.current) {
       cursorCtxRef.current.clearRect(
@@ -245,18 +233,10 @@ export default function Home() {
             />
             <canvas
               id="cursor-canvas"
-              // onMouseDown={startDrawing}
-              // onMouseUp={endDrawing}
-              // onMouseOut={endDrawing}
-              // onMouseMove={draw}
               onPointerDown={startDrawing}
               onPointerUp={endDrawing}
               onPointerOut={endDrawing}
               onPointerMove={draw}
-              // onTouchStart={(e) => e.nativeEvent.preventDefault()}
-              // onTouchMove={(e) => e.nativeEvent.preventDefault()}
-              // onTouchEnd={(e) => e.nativeEvent.preventDefault()}
-              // onTouchCancel={(e) => e.nativeEvent.preventDefault()}
               ref={(canvas) => {
                 if (canvas) {
                   cursorCanvasRef.current = canvas
@@ -276,7 +256,6 @@ export default function Home() {
           </div>
         </main>
         <main className="z-10 order-4 flex min-h-0 items-center justify-center bg-gray-200 dark:bg-gray-600 wide:order-3 wide:max-h-[calc(100vh-140px)]">
-          {/* <div className="m-[calc(100%*0.15)] grid grid-cols-3 grid-rows-3 gap-1"> */}
           <div
             className={`grid aspect-square max-h-[calc(50vh-70px)] grid-cols-3 grid-rows-3 gap-1 p-[calc((50vh-70px)*0.15)] wide:max-h-[calc(100vh-140px)] wide:p-[calc(min((100vh-140px),100%)*0.15)]`}
           >
