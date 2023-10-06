@@ -19,7 +19,9 @@ const toggleDarkClass = (isDark: boolean) => {
 }
 
 function DarkModeToggle() {
-  const [isDarkMode, setIsDarkMode] = useState<string | null>(global.localStorage?.getItem('isDarkMode') || null)
+  const [isDarkMode, setIsDarkMode] = useState<string | null>(
+    global.localStorage?.getItem('isDarkMode') || null
+  )
 
   useEffect(() => {
     if (isDarkMode === null) {
@@ -87,11 +89,9 @@ function DarkModeToggle() {
           (localStorage.getItem('isDarkMode') === null &&
             window.matchMedia('(prefers-color-scheme: dark)').matches)
         ) {
-          console.log("add('dark')")
           document.documentElement.classList.add('dark')
           document.documentElement.style.colorScheme = 'dark'
         } else {
-          console.log("remove('dark')")
           document.documentElement.classList.remove('dark')
           document.documentElement.style.colorScheme = ''
         }

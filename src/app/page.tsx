@@ -30,10 +30,10 @@ export default function Home() {
       wheelRef.current = new JogWheel(document.querySelectorAll('canvas.cube'), {
         paused: true,
       })
-      console.log('init')
+      // console.log('init')
     } else {
       if (wheelRef.current.players[0].playState !== 'running') {
-        console.log('seek', wheelRef.current.players[0].playState)
+        // console.log('seek', wheelRef.current.players[0].playState)
         wheelRef.current.seek(seekRange)
         wheelRef.current.pause()
       }
@@ -44,7 +44,7 @@ export default function Home() {
     if (!isPreview) {
       if (wheelRef.current.players[0].playbackRate > 0) {
         wheelRef.current.reverse()
-        console.log('reverse')
+        // console.log('reverse')
         Promise.all(wheelRef.current.players.map((animation: any) => animation.finished)).then(() =>
           setSeekRange(0)
         )
@@ -52,7 +52,7 @@ export default function Home() {
     } else {
       if (wheelRef.current.players[0].playbackRate < 0) {
         wheelRef.current.reverse()
-        console.log('play')
+        // console.log('play')
         Promise.all(wheelRef.current.players.map((animation: any) => animation.finished)).then(() =>
           setSeekRange(1)
         )
@@ -83,20 +83,19 @@ export default function Home() {
   // draw grid
   useEffect(() => {
     if (gridCtxRef.current) {
-      gridCtxRef.current.clearRect(
-        0,
-        0,
-        gridCanvasRef.current!.width,
-        gridCanvasRef.current!.height
-      )
+      // gridCtxRef.current.clearRect(
+      //   0,
+      //   0,
+      //   gridCanvasRef.current!.width,
+      //   gridCanvasRef.current!.height
+      // )
       // fill white background
-      gridCtxRef.current.fillRect(0, 0, gridCanvasRef.current!.width, gridCanvasRef.current!.height)
-      gridCtxRef.current.fillStyle = 'rgba(255,255,255,1)'
-      gridCtxRef.current.fill()
+      gridCtxRef.current.fillStyle = '#FFFFFF'
+      gridCtxRef.current.fillRect(0, 0, 900, 900)
 
       // minor grid
-      gridCtxRef.current.lineWidth = 0.5
-      gridCtxRef.current.strokeStyle = 'rgba(150,150,150,0.2)'
+      gridCtxRef.current.lineWidth = 1
+      gridCtxRef.current.strokeStyle = 'rgba(150,150,150,0.4)'
       gridCtxRef.current.beginPath()
       for (let i = 0; i <= 900; i += 50) {
         gridCtxRef.current.moveTo(i, 0)
@@ -105,10 +104,11 @@ export default function Home() {
         gridCtxRef.current.lineTo(900, i)
       }
       gridCtxRef.current.stroke()
+
       // major grid
-      gridCtxRef.current.beginPath()
       gridCtxRef.current.lineWidth = 2
       gridCtxRef.current.strokeStyle = 'rgba(150,150,150,0.6)'
+      gridCtxRef.current.beginPath()
       for (let i = 0; i <= 900; i += 300) {
         gridCtxRef.current.moveTo(i, 0)
         gridCtxRef.current.lineTo(i, 900)
@@ -492,15 +492,15 @@ export default function Home() {
               <a href="https://x.com/hotdogee">
                 <svg
                   role="img"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   viewBox="0 0 16 16"
                   className="h-6 w-6 fill-current hover:text-gray-800 hover:drop-shadow-md dark:hover:text-gray-200"
                 >
                   <title>X icon</title>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M0.5 0.5H5.75L9.48421 5.71053L14 0.5H16L10.3895 6.97368L16.5 15.5H11.25L7.51579 10.2895L3 15.5H1L6.61053 9.02632L0.5 0.5ZM12.0204 14L3.42043 2H4.97957L13.5796 14H12.0204Z"
                     fill="currentColor"
                   ></path>
