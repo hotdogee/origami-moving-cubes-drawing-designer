@@ -107,13 +107,16 @@ The icon inside the safe area is guaranteed to be displayed independently from t
 
 - https://maskable.app/editor
 
-# Research promising tech stacks
+# Progressive Web App (PWA)
 
-- Blitz.js
 - https://github.com/shadowwalker/next-pwa/
   - AppDir fork
     https://github.com/DuCanhGH/next-pwa
     https://ducanh-next-pwa.vercel.app/docs
+
+# Research promising tech stacks
+
+- Blitz.js
 - https://github.com/i18next/next-i18next
 - https://contentlayer.dev/
   - Contentlayer is a content SDK that validates and transforms your content into type-safe JSON data you can easily import into your application.
@@ -121,3 +124,7 @@ The icon inside the safe area is guaranteed to be displayed independently from t
 # Lighthouse Audit
 
 - Run with incognito mode to avoid extensions slowing down the render
+
+# Color converter
+
+- https://www.w3schools.com/colors/colors_converter.asp

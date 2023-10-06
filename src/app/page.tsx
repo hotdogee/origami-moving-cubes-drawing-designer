@@ -190,7 +190,7 @@ export default function Home() {
         className={`grid h-screen grid-rows-[52px_1fr_48px_1fr_40px] wide:grid-cols-[1fr_1fr] wide:grid-rows-[52px_fit-content(50vw)_minmax(48px,_1fr)_40px]`}
       >
         <header className="mx-2 flex items-center justify-between wide:col-span-2">
-          <div className="flex items-center justify-items-start">
+          <a href="https://cubes.hanl.in/" className="flex items-center justify-items-start">
             <Image
               src="/icons/android-chrome-512x512.png"
               alt="Logo"
@@ -202,7 +202,7 @@ export default function Home() {
             <h1 className="ml-2 text-base leading-tight sm:text-2xl md:text-3xl">
               Origami Moving Cubes Drawing Designer
             </h1>
-          </div>
+          </a>
           <DarkModeToggle />
         </header>
         <main className="relative flex min-h-0 justify-center bg-gray-200 dark:bg-gray-600 wide:max-h-[calc(100vh-140px)]">

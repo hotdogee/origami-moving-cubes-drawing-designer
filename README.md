@@ -4,7 +4,8 @@ Inspired by Steve Mould's video: Self-assembling material pops into 3D (https://
 
 # Live
 
-Play with it here: https://origami-moving-cubes-drawing-designer.vercel.app/
+Deployed on Vercel: https://cubes.hanl.in/
+
 ![Screenshot_20231006-104724_Chrome](https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/c44baed1-ce87-4f69-97b9-f6a50f7f64f0)
 
 # Features
