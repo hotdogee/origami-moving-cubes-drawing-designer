@@ -76,3 +76,26 @@ https://www.w3schools.com/jsref/api_canvas.asp
 # Examples
 
 - https://github.com/tldraw/tldraw
+
+# Responsive Design
+
+- https://www.tldraw.com/s/v2_c_fJvKdeofc9k6eNmDtQHvk?viewport=0%2C0%2C1714%2C1227&page=page%3AnMyM8REMxb8ajBuTqvSsm
+
+# Mobile touch support
+
+- Replace mouse events with pointer events
+  ```js
+  onMouseDown = { startDrawing }
+  onMouseUp = { endDrawing }
+  onMouseOut = { endDrawing }
+  onMouseMove = { draw }
+  ```
+  ```js
+  onPointerDown = { startDrawing }
+  onPointerUp = { endDrawing }
+  onPointerOut = { endDrawing }
+  onPointerMove = { draw }
+  ```
+- Added `touch-none` class to UI elements you want to prevent the default dragging behavior:
+  - canvas
+  - range slider
