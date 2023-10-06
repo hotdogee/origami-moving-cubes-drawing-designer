@@ -117,6 +117,9 @@ export default function Home() {
       }
       gridCtxRef.current.stroke()
     }
+    if (navigator.userAgent.match(/Android/i)) {
+      window.scrollTo(0, 1)
+    }
   })
 
   // Function for starting the drawing
