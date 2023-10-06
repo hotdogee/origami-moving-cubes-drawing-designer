@@ -12,7 +12,8 @@
     "jogwheel": "^1.4.5",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@types/node": "latest",
