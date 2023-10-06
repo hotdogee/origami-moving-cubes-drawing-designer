@@ -106,3 +106,9 @@ The idea is to keep the core section of our icon designs within a safe area, whi
 The icon inside the safe area is guaranteed to be displayed independently from the rendered shape, while outside of this portion, it might get cropped, according to which icon shape is used.
 
 - https://maskable.app/editor
+
+# Research promising tech stacks
+
+- Blitz.js
+- https://github.com/shadowwalker/next-pwa/
+- https://github.com/i18next/next-i18next
