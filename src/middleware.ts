@@ -1,12 +1,10 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-import { Locale, defaultLocale, locales } from '@/i18n'
+import { LOCALE_COOKIE, Locale, defaultLocale, locales } from '@/i18n'
 
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-
-const LOCALE_COOKIE = 'locale' as const
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
@@ -74,7 +72,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
   // check cookie or accept-language header
-  locale = (request.cookies.get(LOCALE_COOKIE)?.value as string | undefined) || getLocale(request)
+  locale =
+    (request.cookies.get(LOCALE_COOKIE)?.value as string | undefined) ||
+    getLocale(request)
   // console.log(
   //   'cookie',
   //   request.cookies.get(LOCALE_COOKIE),

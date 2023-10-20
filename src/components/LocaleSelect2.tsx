@@ -1,5 +1,5 @@
 'use client'
-import { Locale, defaultLocale, locales } from '@/i18n'
+import { LOCALE_COOKIE, Locale, defaultLocale, locales } from '@/i18n'
 import { Noto_Color_Emoji } from 'next/font/google'
 import Link from 'next/link'
 import { useParams, usePathname, useRouter } from 'next/navigation'
@@ -31,6 +31,7 @@ export default function LocaleSelect() {
         ? pathnameWithoutLocale || '/'
         : `/${locale}${pathnameWithoutLocale}`
     // console.log({ locale, currentLocale, pathnameWithoutLocale, pathnameWithNewLocale })
+    document.cookie = `${LOCALE_COOKIE}=${locale};path=/;max-age=31536000;samesite=strict;`
     router.push(pathnameWithNewLocale)
   }
   return (

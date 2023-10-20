@@ -1,3 +1,4 @@
+export const LOCALE_COOKIE = 'locale' as const
 export const locales = ['en', 'de', 'tw'] as const
 export const defaultLocale = 'en' as const
 
