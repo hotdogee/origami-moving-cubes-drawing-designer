@@ -43,13 +43,9 @@ export default function LocaleSelect() {
         name="choice"
         className={`flex w-[42px] appearance-none space-y-5 rounded-full border border-gray-300 bg-gray-100 p-1.5 px-2.5  text-lg outline-none focus:border-gray-500 dark:border-gray-600 dark:bg-gray-800 dark:focus:border-gray-400 ${noto_color_emoji.className}`}
       >
-        <option value="" className="text-[3pt]" disabled></option>
         <option value="en">🇺🇸 English &nbsp;</option>
-        <option value="" className="text-[3pt]" disabled></option>
         <option value="tw">🇹🇼 Taiwan &nbsp;</option>
-        <option value="" className="text-[3pt]" disabled></option>
         <option value="de">🇩🇪 German &nbsp;</option>
-        <option value="" className="text-[3pt]" disabled></option>
       </select>
     </div>
   )
