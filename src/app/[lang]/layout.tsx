@@ -1,7 +1,13 @@
+import '@/globals.css'
+import { Locale, getDictionary, locales } from '@/i18n'
+import { TranslationProvider } from '@/i18n.context'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ lang: locale }))
+}
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -49,11 +55,18 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
   },
 }
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+  params: { lang },
+}: {
+  children: React.ReactNode
+  params: { lang: Locale }
+}) {
+  const t = await getDictionary(lang)
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <body className={`bg-gray-100 dark:bg-gray-800 ${inter.className}`}>
-        {children}
+        <TranslationProvider t={t}>{children}</TranslationProvider>
         <Analytics />
       </body>
     </html>

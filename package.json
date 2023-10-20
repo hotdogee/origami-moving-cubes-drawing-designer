@@ -10,14 +10,18 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^9.7.1",
+    "@formatjs/intl-localematcher": "^0.4.2",
     "@vercel/analytics": "^1.1.0",
     "jogwheel": "^1.4.5",
+    "negotiator": "^0.6.3",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "server-only": "^0.0.1",
     "sharp": "^0.32.6"
   },
   "devDependencies": {
+    "@types/negotiator": "^0.6.2",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

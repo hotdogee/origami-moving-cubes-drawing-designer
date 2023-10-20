@@ -1,11 +1,14 @@
 'use client'
 import DarkModeToggle from '@/components/DarkModeToggle'
 import useLocalStorageState from '@/hooks/useLocalStorageState'
+import { Locale } from '@/i18n'
+import { TranslationContext } from '@/i18n.context'
 import JogWheel from '@/lib/jogwheel'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 
-export default function Home() {
+export default function Home({ params: { lang } }: { params: { lang: Locale } }) {
+  const t = useContext(TranslationContext)
   const cursorCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const cursorCtxRef = useRef<CanvasRenderingContext2D | null>(null)
   const gridCanvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -45,17 +48,17 @@ export default function Home() {
       if (wheelRef.current.players[0].playbackRate > 0) {
         wheelRef.current.reverse()
         // console.log('reverse')
-        Promise.all(wheelRef.current.players.map((animation: any) => animation.finished)).then(() =>
-          setSeekRange(0)
-        )
+        Promise.all(
+          wheelRef.current.players.map((animation: any) => animation.finished)
+        ).then(() => setSeekRange(0))
       }
     } else {
       if (wheelRef.current.players[0].playbackRate < 0) {
         wheelRef.current.reverse()
         // console.log('play')
-        Promise.all(wheelRef.current.players.map((animation: any) => animation.finished)).then(() =>
-          setSeekRange(1)
-        )
+        Promise.all(
+          wheelRef.current.players.map((animation: any) => animation.finished)
+        ).then(() => setSeekRange(1))
       }
     }
   }, [isPreview])
@@ -128,7 +131,10 @@ export default function Home() {
     const scaleX = drawCanvasRef.current?.width! / rect!.width
     const scaleY = drawCanvasRef.current?.height! / rect!.height
     drawCtxRef.current?.beginPath()
-    drawCtxRef.current?.moveTo(e.nativeEvent.offsetX * scaleX, e.nativeEvent.offsetY * scaleY)
+    drawCtxRef.current?.moveTo(
+      e.nativeEvent.offsetX * scaleX,
+      e.nativeEvent.offsetY * scaleY
+    )
     setIsDrawing(true)
   }
 
@@ -138,7 +144,9 @@ export default function Home() {
     setIsDrawing(false)
   }
 
-  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.PointerEvent<HTMLCanvasElement>) => {
+  const draw = (
+    e: React.MouseEvent<HTMLCanvasElement> | React.PointerEvent<HTMLCanvasElement>
+  ) => {
     e.preventDefault()
     const rect = drawCanvasRef.current?.getBoundingClientRect()
     const scaleX = drawCanvasRef.current?.width! / rect!.width
@@ -164,7 +172,10 @@ export default function Home() {
     }
     // draw
     if (isDrawing) {
-      drawCtxRef.current?.lineTo(e.nativeEvent.offsetX * scaleX, e.nativeEvent.offsetY * scaleY)
+      drawCtxRef.current?.lineTo(
+        e.nativeEvent.offsetX * scaleX,
+        e.nativeEvent.offsetY * scaleY
+      )
       drawCtxRef.current?.stroke()
     }
     // preview
@@ -172,9 +183,24 @@ export default function Home() {
       previewCtxRef.current?.map((ctx, i) => {
         let x = i % 3
         let y = Math.floor(i / 3)
-        ctx.clearRect(0, 0, previewCanvasRef.current[i]!.width, previewCanvasRef.current[i]!.height)
+        ctx.clearRect(
+          0,
+          0,
+          previewCanvasRef.current[i]!.width,
+          previewCanvasRef.current[i]!.height
+        )
         ctx.drawImage(drawCanvasRef.current!, x * 300, y * 300, 300, 300, 0, 0, 300, 300)
-        ctx.drawImage(cursorCanvasRef.current!, x * 300, y * 300, 300, 300, 0, 0, 300, 300)
+        ctx.drawImage(
+          cursorCanvasRef.current!,
+          x * 300,
+          y * 300,
+          300,
+          300,
+          0,
+          0,
+          300,
+          300
+        )
       })
     }
   }
@@ -190,7 +216,10 @@ export default function Home() {
         className={`grid h-screen grid-rows-[52px_1fr_48px_1fr_40px] wide:grid-cols-[1fr_1fr] wide:grid-rows-[52px_fit-content(50vw)_minmax(48px,_1fr)_40px]`}
       >
         <header className="mx-2 flex items-center justify-between wide:col-span-2">
-          <a href="https://cubes.hanl.in/" className="flex items-center justify-items-start">
+          <a
+            href="https://cubes.hanl.in/"
+            className="flex items-center justify-items-start"
+          >
             <Image
               src="/icons/android-chrome-512x512.png"
               alt="Logo"
@@ -200,7 +229,7 @@ export default function Home() {
               className="h-10 drop-shadow-[0_0_2px_#000] dark:drop-shadow-[0_0_2px_#fff] dark:invert"
             />
             <h1 className="ml-2 text-base leading-tight sm:text-2xl md:text-3xl">
-              Origami Moving Cubes Drawing Designer
+              {t['Origami Moving Cubes Drawing Designer']}
             </h1>
           </a>
           <DarkModeToggle />
@@ -311,7 +340,7 @@ export default function Home() {
             >
               <div className="flex flex-1 items-center justify-center space-x-1 text-sm leading-tight">
                 <label htmlFor="color-mobile" className="w-20 flex-none">
-                  Brush Color
+                  {t['Brush Color']}
                 </label>
                 <input
                   id="color-mobile"
@@ -325,7 +354,7 @@ export default function Home() {
               </div>
 
               <label className="flex-1 text-sm leading-tight">
-                Brush Width
+                {t['Brush Width']}
                 <input
                   type="range"
                   min="3"
@@ -339,7 +368,7 @@ export default function Home() {
               </label>
 
               <label className="flex-1 text-sm leading-tight">
-                Brush Opacity
+                {t['Brush Opacity']}
                 <input
                   type="range"
                   min="1"
@@ -359,7 +388,7 @@ export default function Home() {
           >
             <div className="flex flex-1 items-center justify-center space-x-1 text-sm leading-tight">
               <label htmlFor="color" className="w-20 flex-none">
-                Brush Color
+                {t['Brush Color']}
               </label>
               <input
                 id="color"
@@ -373,7 +402,7 @@ export default function Home() {
             </div>
 
             <label className="flex-1 text-sm leading-tight">
-              Brush Width
+              {t['Brush Width']}
               <input
                 type="range"
                 min="3"
@@ -387,7 +416,7 @@ export default function Home() {
             </label>
 
             <label className="flex-1 text-sm leading-tight">
-              Brush Opacity
+              {t['Brush Opacity']}
               <input
                 type="range"
                 min="1"
@@ -418,12 +447,14 @@ export default function Home() {
                 htmlFor="seek-toggle"
                 className="ml-2 text-sm text-gray-900 dark:text-gray-300"
               >
-                Preview
+                {t['Preview']}
               </label>
             </div>
             <div className="flex-auto text-sm leading-tight md:mx-4">
               <label>
-                <span className="text-gray-900 dark:text-gray-300">Transistion</span>
+                <span className="text-gray-900 dark:text-gray-300">
+                  {t['Transistion']}
+                </span>
                 <input
                   type="range"
                   min={0}

@@ -3,7 +3,7 @@
 const config = {
   semi: false,
   singleQuote: true,
-  printWidth: 100,
+  printWidth: 90,
   trailingComma: 'es5',
   organizeImportsSkipDestructiveCodeActions: true,
   plugins: [
