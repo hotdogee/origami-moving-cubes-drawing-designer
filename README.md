@@ -24,6 +24,8 @@ Deployed on Vercel: https://cubes.hanl.in/
   - Maximizes screen real estate usage to provide an optimal design experience.
 - **Offline support**
   - Able to load and reload without an active network connection.
+- **Multilanguage support**
+  - Available in English, German, and [Taiwanese Mandarin](https://en.wikipedia.org/wiki/Taiwanese_Mandarin).
   <table>
     <tr>
       <td colspan="2">Responsive Design with CSS <tt>aspect-ratio</tt> @media query </td>
@@ -36,14 +38,14 @@ Deployed on Vercel: https://cubes.hanl.in/
 
 # Tech Stack
 
-- Next
 - [Next.js](https://nextjs.org/): React framework with server-side rendering (SSR) and static site generation (SSG).
-
-* [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework.
-* Canvas API: Simple custom drawing implementation.
-* CSS animations with custom `@keyframes`
-* Progressive Web App (PWA) optimized with offline capability.
-* TypeScript
+  - Single component dark mode toggle
+  - Simple i18n middleware implementation without using 3rd party libraries.
+- [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework.
+- Canvas API: Simple custom drawing implementation.
+- CSS animations with custom `@keyframes`
+- Progressive Web App (PWA) optimized with offline capability.
+- TypeScript
 
 # Screen Caps
 
