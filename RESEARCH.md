@@ -318,3 +318,30 @@ The icon inside the safe area is guaranteed to be displayed independently from t
 
 👉🏼 tldraw
 🔗 https://www.tldraw.com
+
+# Fonts
+
+// https://github.com/vercel/next.js/blob/canary/packages/font/src/google/font-data.json
+const openSans = Open_Sans({
+weight: ['400', '700'],
+style: ['normal'],
+subsets: ['latin'],
+display: 'swap',
+})
+
+# Locale Select
+
+- OpenUI <selectlist/> still in chromium experimental, not ready.
+  - https://blogs.windows.com/msedgedev/2022/05/05/styling-select-elements-for-real/
+- <details>/<summary> could work with mouse and touch, but keyboard focus needs work.
+- <select>/<options>
+  - color flags can be displayed with google font: Noto Color Emoji, with normal text fixed with fallback and adjustFontFallback options
+  - mouse, touch and keyboard should all work by default
+  - Examples:
+    - https://dockyard.com/blog/2020/02/19/svgs-and-selects-the-accessible-and-semantic-way
+    - https://codepen.io/team/DockYard/pen/PowVLzv
+- external custom implementations like headlessui and radixui are requires importing a lot of heavy code.
+
+# Annoying word wrap issue in VSCode
+
+- https://github.com/microsoft/vscode/issues/32856

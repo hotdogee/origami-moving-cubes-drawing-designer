@@ -1,5 +1,7 @@
 'use client'
 import DarkModeToggle from '@/components/DarkModeToggle'
+import LocaleSelect from '@/components/LocaleSelect'
+import LocaleSelect2 from '@/components/LocaleSelect2'
 import useLocalStorageState from '@/hooks/useLocalStorageState'
 import { Locale } from '@/i18n'
 import { TranslationContext } from '@/i18n.context'
@@ -232,7 +234,10 @@ export default function Home({ params: { lang } }: { params: { lang: Locale } })
               {t['Origami Moving Cubes Drawing Designer']}
             </h1>
           </a>
-          <DarkModeToggle />
+          <menu className="flex items-center justify-items-end space-x-2">
+            <DarkModeToggle />
+            <LocaleSelect2 />
+          </menu>
         </header>
         <main className="relative flex min-h-0 justify-center bg-gray-200 dark:bg-gray-600 wide:max-h-[calc(100vh-140px)]">
           <div className="relative m-4 touch-none">
