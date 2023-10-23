@@ -4,8 +4,10 @@ import LocaleSelect from '@/components/LocaleSelect'
 import useLocalStorageState from '@/hooks/useLocalStorageState'
 import { Locale } from '@/i18n'
 import { TranslationContext } from '@/i18n.context'
+import kofi from '@/images/kofi.svg'
 import JogWheel from '@/lib/jogwheel'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useContext, useEffect, useRef, useState } from 'react'
 
 export default function Home({ params: { lang } }: { params: { lang: Locale } }) {
@@ -475,16 +477,19 @@ export default function Home({ params: { lang } }: { params: { lang: Locale } })
           </div>
         </menu>
         <footer className="order-5 mx-4 flex flex-row items-center justify-between text-gray-600 transition-colors dark:text-gray-400 wide:col-span-2">
-          <div className="flex flex-auto space-x-2 text-sm">
+          <div className="flex space-x-1 text-sm">
             {/* <div>{`© ${new Date().getFullYear()}`}</div> */}
             <div>{`Created by`}</div>
             <a
-              href="https://github.com/hotdogee/"
+              href="https://ko-fi.com/hanlin"
               className="hover:text-gray-800 hover:drop-shadow-md dark:hover:text-gray-200"
             >
               Han Lin
             </a>
           </div>
+          <Link href="https://ko-fi.com/hanlin">
+            <Image src={kofi} alt={t['Buy me a coffee']} height={30} className="flex-0" />
+          </Link>
           <div className="flex flex-row space-x-3">
             <div className="">
               <a href="https://github.com/hotdogee/origami-moving-cubes-drawing-designer">
