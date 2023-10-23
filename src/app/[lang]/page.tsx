@@ -1,7 +1,6 @@
 'use client'
 import DarkModeToggle from '@/components/DarkModeToggle'
 import LocaleSelect from '@/components/LocaleSelect'
-import LocaleSelect2 from '@/components/LocaleSelect2'
 import useLocalStorageState from '@/hooks/useLocalStorageState'
 import { Locale } from '@/i18n'
 import { TranslationContext } from '@/i18n.context'
@@ -236,7 +235,7 @@ export default function Home({ params: { lang } }: { params: { lang: Locale } })
           </a>
           <menu className="flex items-center justify-items-end space-x-2">
             <DarkModeToggle />
-            <LocaleSelect2 />
+            <LocaleSelect />
           </menu>
         </header>
         <main className="relative flex min-h-0 justify-center bg-gray-200 dark:bg-gray-600 wide:max-h-[calc(100vh-140px)]">
@@ -316,7 +315,7 @@ export default function Home({ params: { lang } }: { params: { lang: Locale } })
           <div className="relative flex flex-none items-center justify-center md:hidden md:pl-2">
             <label className="relative ml-2 inline-flex cursor-pointer items-center">
               <input
-                aria-label="Bursh Menu Toggle"
+                aria-label={t['Bursh Menu Toggle']}
                 type="checkbox"
                 value=""
                 className="peer sr-only"
@@ -458,7 +457,7 @@ export default function Home({ params: { lang } }: { params: { lang: Locale } })
             <div className="flex-auto text-sm leading-tight md:mx-4">
               <label>
                 <span className="text-gray-900 dark:text-gray-300">
-                  {t['Transistion']}
+                  {t['Transition']}
                 </span>
                 <input
                   type="range"
@@ -477,7 +476,8 @@ export default function Home({ params: { lang } }: { params: { lang: Locale } })
         </menu>
         <footer className="order-5 mx-4 flex flex-row items-center justify-between text-gray-600 transition-colors dark:text-gray-400 wide:col-span-2">
           <div className="flex flex-auto space-x-2 text-sm">
-            <div>{`© ${new Date().getFullYear()}`}</div>
+            {/* <div>{`© ${new Date().getFullYear()}`}</div> */}
+            <div>{`Created by`}</div>
             <a
               href="https://github.com/hotdogee/"
               className="hover:text-gray-800 hover:drop-shadow-md dark:hover:text-gray-200"
