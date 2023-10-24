@@ -25,6 +25,17 @@ export const metadata: Metadata = {
     template: APP_TITLE_TEMPLATE,
   },
   description: APP_DESCRIPTION,
+  keywords: [
+    'Origami Moving Cubes',
+    'Moving Cubes',
+    'Origami Cubes',
+    'Cubes',
+    'Self-assembling material pops into 3D',
+    'Steve Mould',
+  ],
+  authors: [{ name: 'Han Lin' }],
+  creator: 'Han Lin',
+  publisher: 'Han Lin',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#f3f4f6' },
     { media: '(prefers-color-scheme: dark)', color: '#1f2937' },
@@ -46,6 +57,14 @@ export const metadata: Metadata = {
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
+    url: '/',
+    images: [
+      {
+        url: '/og.jpg',
+        width: 1493,
+        height: 894,
+      },
+    ],
   },
   twitter: {
     card: 'summary',
@@ -54,6 +73,22 @@ export const metadata: Metadata = {
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
+    siteId: '65576906',
+    creator: '@hotdogee',
+    creatorId: '65576906',
+    images: ['/og.jpg'],
+  },
+  alternates: {
+    canonical: '/',
+    languages: {
+      en: '/en',
+      'zh-TW': '/tw',
+      de: '/de',
+      fr: '/fr',
+      hu: '/hu',
+      nl: '/nl',
+      ru: '/ru',
+    },
   },
 }
 export default async function RootLayout({
