@@ -36,6 +36,10 @@ Deployed on Vercel: https://cubes.hanl.in/
     </tr>
   </table>
 
+# Screen Recordings
+
+https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/a9f6f0ff-b32d-45f2-b30c-5c3f0dfa549f
+
 # Tech Stack
 
 - [Next.js](https://nextjs.org/): React framework with server-side rendering (SSR) and static site generation (SSG).
@@ -136,7 +140,7 @@ https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/a3d20ea6b
 
 ### LocaleSelect.tsx
 
-You will likely need to implement your own locale selector component so it matches the styling of your site. 
+You will likely need to implement your own locale selector component so it matches the styling of your site.
 
 This example uses simple HTML \<select> and \<options> without any external libraries.
 
@@ -144,8 +148,43 @@ Set `LOCALE_COOKIE` when the user chooses a new locale.
 
 https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/213423cdacd1a3aa1a569765153458d8cdedb60b/src/components/LocaleSelect.tsx#L1-L55
 
-### Screen Caps
+# Implementing a Dark Mode Toggle to Next.js 13 App Router and TailwindCSS
 
-https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/a9f6f0ff-b32d-45f2-b30c-5c3f0dfa549f
+## Design Goals
+
+- Does not flash the wrong mode on page load. The website should immediately render in the light or dark mode that matches the user's system settings.
+- Adds or removes the `dark` class for Tailwind CSS and also sets the CSS `color-scheme` property for scrollbars on the `<html>` element.
+- The toggle button allows the user to override the system settings. The toggle button has three states: `Light`, `System`, and `Dark`, with `System` as the default.
+- If the toggle is set to `System`, the page should live update if the system settings are changed.
+- Theme selection is persisted through page changes and separate sessions using local storage.
+- Does not block rendering of the UI until the React app is hydrated and renders. Only a few lines of JavaScript that set the light/dark mode attribute on the `<html>` element should block rendering.
+- Does not cause any terminal or browser errors. This includes errors during the server component render and the rendering of any of the React components in the browser.
+- The first time the light/dark mode toggle is rendered on the client, it should already be in the correct state. Since this cannot be determined on the server, the toggle component may flash briefly on the client.
+
+## Implementation
+
+### Set up `tailwind.config.ts` to toggle dark mode manually
+
+https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
+
+https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/6c5e44d839396c2439f2b13ca917185ac382b02e/tailwind.config.ts#L9
+
+## Add `suppressHydrationWarning` to the `<html>` element
+
+This property only applies one level deep to just the `<html>` element, so it won't block hydration warnings on other elements.
+
+The `HydrationWarning` is caused by the few lines of JavaScript that add the `dark` class to the `<html>` element according to client settings before first rendering. This is used to prevent the wrong theme from flashing on page load.
+
+https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/6c5e44d839396c2439f2b13ca917185ac382b02e/src/app/%5Blang%5D/layout.tsx#L67
+
+## Use the `DarkModeToggle`
+
+Modify the styling to match your site.
+
+This example is styled to match the toggle on the [Official Next.js website](https://nextjs.org/), which is located in the bottom right corner.
+
+All styling is done using Tailwind CSS classes and inline SVG for easy modification.
+
+https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/6c5e44d839396c2439f2b13ca917185ac382b02e/src/components/DarkModeToggle.tsx#L1-L200
 
 <a href="https://ko-fi.com/hanlin"><img src="https://github.com/hotdogee/origami-moving-cubes-drawing-designer/raw/main/src/images/kofi.svg" align="left" height="48" ></a>
