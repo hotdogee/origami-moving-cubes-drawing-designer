@@ -53,6 +53,8 @@ https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411
 
 # How to add Internationalization (i18n) to Next.js 13 App Router
 
+![locale-switch-android-windows-small](https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/ff07066a-ee94-4e49-9055-cbc26bed0286)
+
 ## Design Goals
 
 1. Support static site generation (SSG), automatically generated as static HTML + JSON (uses `getStaticProps`).
@@ -150,6 +152,8 @@ https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/213423cda
 
 # Implementing a Dark Mode Toggle to Next.js 13 App Router and TailwindCSS
 
+![dark-mode-toggle](https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/5bffb96a-2298-4982-b30a-d6f854cc6730)
+
 ## Design Goals
 
 - Does not flash the wrong mode on page load. The website should immediately render in the light or dark mode that matches the user's system settings.
@@ -188,3 +192,4 @@ All styling is done using Tailwind CSS classes and inline SVG for easy modificat
 https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/6c5e44d839396c2439f2b13ca917185ac382b02e/src/components/DarkModeToggle.tsx#L1-L200
 
 <a href="https://ko-fi.com/hanlin"><img src="https://github.com/hotdogee/origami-moving-cubes-drawing-designer/raw/main/src/images/kofi.svg" align="left" height="48" ></a>
+
