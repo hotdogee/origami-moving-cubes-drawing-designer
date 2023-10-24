@@ -107,7 +107,7 @@ https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/83eae6cd0
 
 ### middleware.ts
 
-Handles locale detection, redirects and rewrites, and sets cookies if manually navigated to `/defaultLocale`
+Handles locale detection, redirects, and rewrites, and sets cookies if manually navigated to `/defaultLocale`
 
 https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/84f68172608323ae49639e3095a604f38efbb095/src/middleware.ts#L1-L79
 
@@ -130,19 +130,21 @@ In the root layout, use `generateStaticParams` to statically generate all locale
 
 https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/a3d20ea6b626737100ff42bc8b85cf7b3096ad78/src/app/%5Blang%5D/layout.tsx#L1-L10
 
-In the root layout, setup `DictionaryContext` by passing the translation dictionary `t` from `getDictionary` to `DictionaryProvider`.
+In the root layout, set up `DictionaryContext` by passing the translation dictionary `t` from `getDictionary` to `DictionaryProvider`.
 
 https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/a3d20ea6b626737100ff42bc8b85cf7b3096ad78/src/app/%5Blang%5D/layout.tsx#L58-L74
 
 ### LocaleSelect.tsx
 
-You will likely need to implement your own locale selector component so it matches the styling of your site, this example uses simple HTML <select> and <options> withou any external libraries.
+You will likely need to implement your own locale selector component so it matches the styling of your site. 
+
+This example uses simple HTML \<select> and \<options> without any external libraries.
 
 Set `LOCALE_COOKIE` when the user chooses a new locale.
 
-https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/83eae6cd0ba22b85eedf4dea14b8bf65b5c46291/src/components/LocaleSelect.tsx#L1-L55
+https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/213423cdacd1a3aa1a569765153458d8cdedb60b/src/components/LocaleSelect.tsx#L1-L55
 
-# Screen Caps
+### Screen Caps
 
 https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/a9f6f0ff-b32d-45f2-b30c-5c3f0dfa549f
 
