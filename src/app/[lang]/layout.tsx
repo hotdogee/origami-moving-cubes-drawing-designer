@@ -1,6 +1,6 @@
+import { DictionaryProvider } from '@/context/i18n.context'
 import '@/globals.css'
 import { Locale, getDictionary, locales } from '@/i18n'
-import { TranslationProvider } from '@/i18n.context'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -66,7 +66,7 @@ export default async function RootLayout({
   return (
     <html lang={lang} suppressHydrationWarning>
       <body className={`bg-gray-100 dark:bg-gray-800 ${inter.className}`}>
-        <TranslationProvider t={t}>{children}</TranslationProvider>
+        <DictionaryProvider t={t}>{children}</DictionaryProvider>
         <Analytics />
       </body>
     </html>

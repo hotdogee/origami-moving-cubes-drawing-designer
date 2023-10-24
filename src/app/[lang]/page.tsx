@@ -1,9 +1,9 @@
 'use client'
 import DarkModeToggle from '@/components/DarkModeToggle'
 import LocaleSelect from '@/components/LocaleSelect'
+import { DictionaryContext } from '@/context/i18n.context'
 import useLocalStorageState from '@/hooks/useLocalStorageState'
 import { Locale } from '@/i18n'
-import { TranslationContext } from '@/i18n.context'
 import kofi from '@/images/kofi.svg'
 import JogWheel from '@/lib/jogwheel'
 import Image from 'next/image'
@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { useContext, useEffect, useRef, useState } from 'react'
 
 export default function Home({ params: { lang } }: { params: { lang: Locale } }) {
-  const t = useContext(TranslationContext)
+  const t = useContext(DictionaryContext)
   const cursorCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const cursorCtxRef = useRef<CanvasRenderingContext2D | null>(null)
   const gridCanvasRef = useRef<HTMLCanvasElement | null>(null)
