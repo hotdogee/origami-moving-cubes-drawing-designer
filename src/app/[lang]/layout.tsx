@@ -18,6 +18,7 @@ const APP_DESCRIPTION =
   'Origami Moving Cubes Drawing Designer by Han Lin (hotdogee [at] gmail [dot] com)'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(`https://${process.env.VERCEL_URL}`),
   applicationName: APP_NAME,
   title: {
     default: APP_DEFAULT_TITLE,
