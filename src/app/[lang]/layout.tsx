@@ -14,8 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 const APP_NAME = 'Origami Cubes'
 const APP_DEFAULT_TITLE = 'Origami Moving Cubes Drawing Designer'
 const APP_TITLE_TEMPLATE = '%s - Origami Cubes'
-const APP_DESCRIPTION =
-  'Origami Moving Cubes Drawing Designer by Han Lin (hotdogee [at] gmail [dot] com)'
+const APP_DESCRIPTION = 'Created by Han Lin'
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${process.env.VERCEL_URL}`),
