@@ -38,7 +38,7 @@ Deployed on Vercel: https://cubes.hanl.in/
 
 # Screen Recordings
 
-https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/a9f6f0ff-b32d-45f2-b30c-5c3f0dfa549f
+![2023-10-01 12-56-48](https://github.com/user-attachments/assets/8ccea5e5-c659-4073-8333-ce1cbdb58d0b)
 
 # Tech Stack
 
