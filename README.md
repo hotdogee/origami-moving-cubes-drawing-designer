@@ -1,6 +1,10 @@
 # Origami Moving Cubes Drawing Designer
 
 Inspired by Steve Mould's video: [Self-assembling material pops into 3D (YouTube)](https://www.youtube.com/watch?v=vrOjy-v5JgQ)
+![FMRi6pNAoag](https://github.com/user-attachments/assets/bb0196d8-bb63-4004-bbd0-15040c7e4f6a)
+
+As seen on Steve Mould's video: [This new type of illusion is really hard to make (YouTube)](https://youtu.be/FMRi6pNAoag?t=17)
+![FMRi6pNAoag](https://github.com/user-attachments/assets/de5855af-e770-4dfd-aeca-51c584f02750)
 
 # Live
 
