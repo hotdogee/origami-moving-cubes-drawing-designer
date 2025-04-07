@@ -18,7 +18,7 @@ Deployed on Vercel: https://cubes.hanl.in/
   - Create and design with a live preview, ensuring your creations come to life as you envision them.
 - **Synced Brush Cursor**
   - Improve precision and accuracy with a synced brush cursor that's visible in the preview.
-- \*_Persistent Brush Settings_
+- **Persistent Brush Settings**
   - Your preferred brush color, size, and opacity settings will remain intact even after reloading the app.
 - **Adaptable Dark and Light Themes**
   - Switch between dark and light themes or use your system settings by default.
