@@ -55,7 +55,7 @@ Deployed on Vercel: https://cubes.hanl.in/
 - Progressive Web App (PWA) optimized with offline capability.
 - TypeScript
 
-# How to add Internationalization (i18n) to Next.js 13 App Router
+# Implementing a lightweight Internationalization (i18n) solution wtih Next.js 13 App Router and SSG support
 
 ![locale-switch-android-windows-small](https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/ff07066a-ee94-4e49-9055-cbc26bed0286)
 
@@ -154,7 +154,7 @@ Set `LOCALE_COOKIE` when the user chooses a new locale.
 
 https://github.com/hotdogee/origami-moving-cubes-drawing-designer/blob/213423cdacd1a3aa1a569765153458d8cdedb60b/src/components/LocaleSelect.tsx#L1-L55
 
-# Implementing a Dark Mode Toggle to Next.js 13 App Router and TailwindCSS
+# Implementing a three state Dark Mode Toggle wtih React and TailwindCSS support
 
 ![dark-mode-toggle](https://github.com/hotdogee/origami-moving-cubes-drawing-designer/assets/2135411/5bffb96a-2298-4982-b30a-d6f854cc6730)
 
