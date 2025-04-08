@@ -1,4 +1,4 @@
-# Origami Moving Cubes: Interactive Drawing Designer
+# Origami Moving Cubes - Interactive Drawing Designer
 
 Inspired by Steve Mould's video: [Self-assembling material pops into 3D (YouTube)](https://www.youtube.com/watch?v=vrOjy-v5JgQ)
 ![FMRi6pNAoag](https://github.com/user-attachments/assets/bb0196d8-bb63-4004-bbd0-15040c7e4f6a)
